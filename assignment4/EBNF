@@ -1,1 +1,28 @@
+<command-line> ::= <command> [ <pipe-sequence> ]
 
+<command> ::= <set-command> 
+            | <echo-command> 
+            | <basic-command>
+
+<set-command> ::= "set" <VARIABLE> "=" <expr>
+
+<echo-command> ::= "echo" <value>
+
+<basic-command> ::= <COMMAND> { <argument> } [ <redirection> ]
+
+<argument> ::= <STRING> | <VARIABLE> | <NUMBER>
+
+<value> ::= <VARIABLE> | <STRING> | <expr>
+
+<expr> ::= <term> { ("+" | "-") <term> }
+
+<term> ::= <factor> { ("*" | "/") <factor> }
+
+<factor> ::= <VARIABLE> 
+           | <NUMBER> 
+           | <STRING>
+           | "(" <expr> ")"
+
+<pipe-sequence> ::= "|" <command> { "|" <command> }
+
+<redirection> ::= <REDIRECT> <argument>
